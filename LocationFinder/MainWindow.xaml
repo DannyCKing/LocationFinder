@@ -1,0 +1,46 @@
+﻿<Window x:Class="LocationFinder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LocationFinder"
+        mc:Ignorable="d"
+        xmlns:vms="clr-namespace:LocationFinder.ViewModels"
+        Title="Location Finder" Height="600" Width="1400">
+    <Window.DataContext>
+        <vms:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="7*" />
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="1" ItemsSource="{Binding Locations}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="200"/>
+                    <GridViewColumn Header="Latitude" DisplayMemberBinding="{Binding Latitude.LatitudeValue, StringFormat='0.00'}" Width="100"/>
+                    <GridViewColumn Header="Longitude" DisplayMemberBinding="{Binding Longitude.LongitudeValue, StringFormat='0.00'}" Width="100"/>
+                    <GridViewColumn Header="Elevation" DisplayMemberBinding="{Binding Elevation, StringFormat='0 ft'}" Width="75"/>
+                    <GridViewColumn Header="X" DisplayMemberBinding="{Binding X, StringFormat='0.00'}" Width="100"/>
+                    <GridViewColumn Header="Y" DisplayMemberBinding="{Binding Y, StringFormat='0.00'}" Width="100"/>
+                    <GridViewColumn Header="Z" DisplayMemberBinding="{Binding Z, StringFormat='0.00'}" Width="100"/>
+                    <GridViewColumn Header="Compass Orientation Deg" DisplayMemberBinding="{Binding BearingToReferencePoint, StringFormat='0.00'}" Width="150"/>
+                    <GridViewColumn Header="Vertical Orientation" DisplayMemberBinding="{Binding VeritcalOrientationToReferencePoint, StringFormat='0.00'}" Width="150"/>
+                    <GridViewColumn Header="Absolute Distance" DisplayMemberBinding="{Binding DistanceToReferencePoint, StringFormat='0.00'}" Width="100"/>
+                </GridView>
+            </ListView.View>
+
+            <!--<ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" Margin="5"  />
+                        <TextBlock Text="{Binding Latitude}" Margin="5" />
+                        <TextBlock Text="{Binding Longitude}"Margin="5" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>-->
+        </ListView>
+        <Button Content="Set Starting Point Location" HorizontalAlignment="Left" Margin="64,21,0,0" VerticalAlignment="Top" Width="187" Click="Button_Click"/>
+    </Grid>
+</Window>
